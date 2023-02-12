@@ -1,0 +1,11 @@
+{
+  "games":[{
+    "name":"stardew valley",
+    "default_locations":{
+      "steam":"%appdata%\\StardewValley\\Saves",
+      "switch":"/JKSV/Stardew Valley/",
+      "android":"Android/data/com.chucklefish.stardewvalley/files/saves",
+      "linux":"~/.config/StardewValley/Saves"
+    }
+  }]
+}

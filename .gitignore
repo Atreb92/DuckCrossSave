@@ -1,3 +1,4 @@
 secrets
+backup
+__pycache__
 main_ftp.py
-__pycache__/*
