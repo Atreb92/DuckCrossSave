@@ -1,24 +1,30 @@
-import codecs
+import json
 import os
-from utils import get_latest, open_file
-
-
+import sys
+from distutils.dir_util import copy_tree
+from utils import resource_path
+import datetime
 class Config:
-    def __init__(self, path):
-        self.save_file = None
-        self.load_config(path)
-        pass
-    def load_config(self, path):
-        if os.path.isfile(path):
-            self.__load_config_manual(path)
-        else:
-            self.__load_config_automatic(path)
+    def __init__(self, game, os):
+        self.game = game.lower()
+        self.os = os.lower()
+        self.default_location = None
+        self.load_config()
+        print(self.default_location)
 
-    def __load_config_manual(self, path):
-        self.save_file = open_file(path)
+    def load_config(self):
+        with open("config.json") as f:
+            config = json.load(f)
+        game_config = [x for x in config["games"] if self.game in x["name"]][0]
+        self.default_location = os.path.expandvars(game_config["default_locations"][self.os])
+    def backup_saves(self):
+        cur_time = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        copy_tree(self.default_location, resource_path(f"backup/{self.os}/{self.game}_{cur_time}"))
 
-    def __load_config_automatic(self, path):
-        latest_file = get_latest(path)
-        self.save_file = open_file(latest_file)
+def main():
+    config = Config("Stardew Valley", "steam")
+    config.backup_saves()
 
 
+if __name__ == "__main__":
+    sys.exit(main())
