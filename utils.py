@@ -9,7 +9,6 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
-@staticmethod
 def get_latest(path, filetype="*"):
     list_of_files = glob.glob(f'{path}/{filetype}') # * means all if need specific format then *.csv
     latest_file = max(list_of_files, key=os.path.getctime)
