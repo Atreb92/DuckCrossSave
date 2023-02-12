@@ -60,8 +60,8 @@ class FTPDCS:
                 raise SaveFileNotFoundError
             
             else:
-                os.makedirs(resource_path(f"{path}/switch/{game_name}"))
-                self.__recursive_download(f"{self.jksv_path}/{game_name}/{most_recent_directory}", resource_path(f"{path}/switch/{game_name}"))
+                os.makedirs(resource_path(f"{path}"))
+                self.__recursive_download(f"{self.jksv_path}/{game_name}/{most_recent_directory}", resource_path(f"{path}"))
 
         except PermanentError:
             print(f"Game directory {game_name} not found: {self.jksv_path}/{game_name}")
