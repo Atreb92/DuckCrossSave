@@ -36,7 +36,6 @@ def stardew_valley(cur_time, platform1, platform2):
             
 
         return out_dict
-        #return [["switch", "paperopoli", "a", "b"],["steam", "cotton", "c"]]
     except FileNotFoundError as e:
         print(f"Directory not found: {e}")
     except:
