@@ -13,7 +13,9 @@ class Comparer:
         saves_dict = self.get_save_files(platforms)
         saves_node_info = self.get_saves_node_info(platforms, saves_dict)
         out_dict = {x:[] for x in platforms}
-        return self.compare_int(out_dict, platforms, saves_node_info)
+        if compare_type == "int":
+            out_dict = self.compare_int(out_dict, platforms, saves_node_info)
+        return out_dict
 
     def compare_int(self, out_dict, platforms, saves_node_info):
         for key in saves_node_info[platforms[0]].keys() & saves_node_info[platforms[1]].keys():
