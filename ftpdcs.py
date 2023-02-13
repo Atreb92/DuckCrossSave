@@ -15,8 +15,6 @@ class FTPDCS:
     def __init__(self, credential_filename):
         self.open_connection(credential_filename)
 
-        self.jksv_path = "/JKSV"
-
     def __load_credentials(self, filename):
         try:
             with open(resource_path(filename), mode="r", encoding="utf-8") as inFile:
@@ -41,9 +39,9 @@ class FTPDCS:
         except:
             traceback.print_exc()
 
-    def backup_directory(self, game_name, path):
+    def backup_directory(self, game_path, path):
         try:
-            self.ftp.chdir(f"{self.jksv_path}/{game_name}")
+            self.ftp.chdir(f"{game_path}")
             
             most_recent_datetime = None
             most_recent_directory = None
@@ -61,10 +59,10 @@ class FTPDCS:
             
             else:
                 os.makedirs(resource_path(f"{path}"))
-                self.__recursive_download(f"{self.jksv_path}/{game_name}/{most_recent_directory}", resource_path(f"{path}"))
+                self.__recursive_download(f"{game_path}/{most_recent_directory}", resource_path(f"{path}"))
 
         except PermanentError:
-            print(f"Game directory {game_name} not found: {self.jksv_path}/{game_name}")
+            print(f"Game directory {game_path} not found: {game_path}")
         except:
             traceback.print_exc()
 
