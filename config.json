@@ -5,7 +5,9 @@
       "steam":"%appdata%\\StardewValley\\Saves",
       "switch":"/JKSV/Stardew Valley",
       "android":"Android/data/com.chucklefish.stardewvalley/files/saves",
-      "linux":"~/.config/StardewValley/Saves"
-    }
+      "linux":"~/.config/StardewValley/Saves",
+      "test": "C:\\Users\\Dizmo\\Desktop\\Stardew Valley"
+    },
+    "node": "player/millisecondsPlayed"
   }]
 }
